@@ -346,7 +346,7 @@ class SlotAttentionTranslEquiv(nn.Module):
     dense_k = nn.Dense(qkv_size, use_bias=False, name="general_dense_k_0")
     dense_v = nn.Dense(qkv_size, use_bias=False, name="general_dense_v_0")
     grid_proj = nn.Dense(qkv_size, name="dense_gp_0")
-    grid_enc = self.grid_encoder
+    grid_enc = self.grid_encoder()
     layernorm_q = nn.LayerNorm()
     inverted_attention = InvertedDotProductAttentionKeyPerQuery(
         epsilon=self.epsilon,
@@ -502,7 +502,7 @@ class SlotAttentionTranslScaleEquiv(nn.Module):
     dense_k = nn.Dense(qkv_size, use_bias=False, name="general_dense_k_0")
     dense_v = nn.Dense(qkv_size, use_bias=False, name="general_dense_v_0")
     grid_proj = nn.Dense(qkv_size, name="dense_gp_0")
-    grid_enc = self.grid_encoder
+    grid_enc = self.grid_encoder()
     layernorm_q = nn.LayerNorm()
     inverted_attention = InvertedDotProductAttentionKeyPerQuery(
         epsilon=self.epsilon,
@@ -677,7 +677,7 @@ class SlotAttentionTranslRotScaleEquiv(nn.Module):
     dense_k = nn.Dense(qkv_size, use_bias=False, name="general_dense_k_0")
     dense_v = nn.Dense(qkv_size, use_bias=False, name="general_dense_v_0")
     grid_proj = nn.Dense(qkv_size, name="dense_gp_0")
-    grid_enc = self.grid_encoder
+    grid_enc = self.grid_encoder()
     layernorm_q = nn.LayerNorm()
     inverted_attention = InvertedDotProductAttentionKeyPerQuery(
         epsilon=self.epsilon,
