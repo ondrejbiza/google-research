@@ -143,7 +143,7 @@ class SlotAttentionExplicitStats(nn.Module):
     # Add position encodings to inputs
     n_features = inputs.shape[-1]
     grid_projector = nn.Dense(n_features, name="dense_pe_0")
-    inputs = self.grid_encoder(inputs + grid_projector(grid))
+    inputs = self.grid_encoder()(inputs + grid_projector(grid))
 
     qkv_size = self.qkv_size or slots.shape[-1]
     head_dim = qkv_size // self.num_heads
@@ -260,7 +260,7 @@ class SlotAttentionPosKeysValues(nn.Module):
 
     # Add position encodings to keys and values.
     grid_projector = dense(name="general_dense_p_0")
-    grid_encoder = self.grid_encoder
+    grid_encoder = self.grid_encoder()
     k = grid_encoder(k + grid_projector(grid))
     v = grid_encoder(v + grid_projector(grid))
 
