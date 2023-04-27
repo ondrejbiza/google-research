@@ -329,6 +329,9 @@ def create_datasets(
   elif config.data.dataset_name == "tfds":
     dataset_builder = tfds.builder(
         config.data.tfds_name, data_dir=config.data.data_dir)
+  elif config.data.dataset_name == "tfds_gcs":
+    dataset_builder = tfds.builder(
+        config.data.tfds_name, data_dir=config.data.data_dir, try_gcs=True)
   else:
     raise ValueError("Please specify a valid dataset name.")
 

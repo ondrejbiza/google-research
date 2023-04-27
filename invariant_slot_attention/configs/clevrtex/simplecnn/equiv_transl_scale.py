@@ -63,10 +63,10 @@ def get_config():
   }
 
   config.data = ml_collections.ConfigDict({
-      "dataset_name": "tfds",
+      "dataset_name": "tfds_gcs",
       # The TFDS dataset will be created in the directory below
       # if you follow the README in datasets/clevrtex.
-      "data_dir": "~/tensorflow_datasets",
+      "data_dir": "gs://isa-public",
       "tfds_name": "clevr_tex",
       "shuffle_buffer_size": config.batch_size * 8,
       "resolution": (128, 128)
