@@ -322,7 +322,7 @@ def create_datasets(
     dataset_builder = sunds.builder(
         name=config.get("tfds_name", "msn_easy"),
         data_dir=config.get(
-            "data_dir", "gs://kubric-public/tfds/msn_easy_frames"),
+            "data_dir", "gs://kubric-public/tfds"),
         try_gcs=True)
     dataset_builder.as_dataset = functools.partial(
         dataset_builder.as_dataset, task=_sunds_create_task())
