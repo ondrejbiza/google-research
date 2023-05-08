@@ -67,6 +67,7 @@ def get_config():
       "shuffle_buffer_size": config.batch_size * 8,
       "resolution": (128, 128)
   })
+  config.validation_split = "val"
 
   config.max_instances = 11
   config.num_slots = config.max_instances  # Only used for metrics.
