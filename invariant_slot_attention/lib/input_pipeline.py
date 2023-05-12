@@ -285,6 +285,9 @@ def create_datasets(
       "gs://isa-storage-1/wo/validation/camera_1/waymo_open_128x192.tfrecords-zlib-{:05d}-of-00016".format(i) for i in range(16)
     ]
 
+    train_files = tf.data.Dataset(train_files)
+    eval_files = tf.data.Dataset(eval_files)
+
     train_data_reader = functools.partial(
         tf.data.TFRecordDataset,
         compression_type="ZLIB", buffer_size=2*(2**20))
