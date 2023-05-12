@@ -15,14 +15,14 @@ Note YOUR_DOWNLOAD_PATH, which should contain the following directories:
 
 2. `cd` your terminal into `datasets/clevrtex`.
 
-3. Run `preprocess.py` for all splits. These commands can be run in parallel.
+3. Run `preprocess.py` for all splits. The following commands run either 64 or 16 preprocessor scripts in parallel. Each script creates a single TFDS shard.
 
-    * `python preprocess.py --base_read_path=YOUR_DOWNLOAD_PATH --name=full --n_dirs=50`
-    * `python preprocess.py --base_read_path=YOUR_DOWNLOAD_PATH --name=camo --n_dirs=20`
-    * `python preprocess.py --base_read_path=YOUR_DOWNLOAD_PATH --name=grassbg --n_dirs=20`
-    * `python preprocess.py --base_read_path=YOUR_DOWNLOAD_PATH --name=pbg --n_dirs=20`
-    * `python preprocess.py --base_read_path=YOUR_DOWNLOAD_PATH --name=vbg --n_dirs=20`
-    * `python preprocess.py --base_read_path=YOUR_DOWNLOAD_PATH --name=outd --n_dirs=10`
+    * `for i in {0..63} ; do python preprocess.py --base_read_path=YOUR_DOWNLOAD_PATH --name=full --n_dirs=50 --n_shards=64 --shard_idx=$i & done`
+    * `for i in {0..15} ; do python preprocess.py --base_read_path=YOUR_DOWNLOAD_PATH --name=camo --n_dirs=20 --n_shards=16 --shard_idx=$i & done`
+    * `for i in {0..15} ; do python preprocess.py --base_read_path=YOUR_DOWNLOAD_PATH --name=grassbg --n_dirs=20 --n_shards=16 --shard_idx=$i & done`
+    * `for i in {0..15} ; do python preprocess.py --base_read_path=YOUR_DOWNLOAD_PATH --name=pbg --n_dirs=20 --n_shards=16 --shard_idx=$i & done`
+    * `for i in {0..15} ; do python preprocess.py --base_read_path=YOUR_DOWNLOAD_PATH --name=vbg --n_dirs=20 --n_shards=16 --shard_idx=$i & done`
+    * `for i in {0..15} ; do python preprocess.py --base_read_path=YOUR_DOWNLOAD_PATH --name=outd --n_dirs=10 --n_shards=16 --shard_idx=$i & done`
 
     A folder named `tfrecords` will be created. It will contain all directories from step 1.
 
