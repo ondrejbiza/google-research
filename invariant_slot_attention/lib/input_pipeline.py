@@ -278,13 +278,12 @@ def create_datasets(
 
     dataset_builder = CLEVRWithMasksBuilder()
   elif config.data.dataset_name == "waymo_open":
-    train_path = os.path.join(
-        PATH_WAYMO_OPEN, "training/camera_1/*tfrecords*")
-    eval_path = os.path.join(
-        PATH_WAYMO_OPEN, "validation/camera_1/*tfrecords*")
-
-    train_files = tf.data.Dataset.list_files(train_path)
-    eval_files = tf.data.Dataset.list_files(eval_path)
+    train_files = [
+      "gs://isa-storage-1/wo/training/camera_1/waymo_open_128x192.tfrecords-zlib-{:05d}-of-00016".format(i) for i in range(16)
+    ]
+    eval_files = [
+      "gs://isa-storage-1/wo/validation/camera_1/waymo_open_128x192.tfrecords-zlib-{:05d}-of-00016".format(i) for i in range(16)
+    ]
 
     train_data_reader = functools.partial(
         tf.data.TFRecordDataset,
