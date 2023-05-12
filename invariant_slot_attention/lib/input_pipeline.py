@@ -278,8 +278,8 @@ def create_datasets(
 
     dataset_builder = CLEVRWithMasksBuilder()
   elif config.data.dataset_name == "waymo_open":
-    train_files = tf.data.Dataset.range(16).map(lambda i: "gs://isa-storage-1/wo/training/camera_1/waymo_open_128x192.tfrecords-zlib-{:05d}-of-00016".format(i))
-    eval_files = tf.data.Dataset.range(16).map(lambda i: "gs://isa-storage-1/wo/validation/camera_1/waymo_open_128x192.tfrecords-zlib-{:05d}-of-00016".format(i))
+    train_files = tf.data.Dataset.range(16).map(lambda i: "gs://isa-storage-1/wo/training/camera_1/waymo_open_128x192.tfrecords-zlib-{:05d}-of-00016".format(int(i)))
+    eval_files = tf.data.Dataset.range(16).map(lambda i: "gs://isa-storage-1/wo/validation/camera_1/waymo_open_128x192.tfrecords-zlib-{:05d}-of-00016".format(int(i)))
 
     # train_files = [
     #   "gs://isa-storage-1/wo/training/camera_1/waymo_open_128x192.tfrecords-zlib-{:05d}-of-00016".format(i) for i in range(16)
