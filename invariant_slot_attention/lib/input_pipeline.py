@@ -108,7 +108,7 @@ def _decode_clevr_with_masks(example_proto):
   return single_example
 
 
-def _decode_waymo_open(example_proto):
+def _decode_waymo_open(example_proto, include_depth=False):
   """Unserializes a serialized tf.train.Example sample."""
   single_example = tf.io.parse_single_example(
       example_proto, FEATURES_WAYMO_OPEN)
@@ -117,8 +117,9 @@ def _decode_waymo_open(example_proto):
         tf.io.decode_raw(single_example[k], tf.uint8), axis=-1)
   single_example["segmentations"] = tf.expand_dims(
       single_example["segmentations"], axis=-1)
-  single_example["depth"] = tf.expand_dims(
-      single_example["depth"], axis=-1)
+  if include_depth:
+    single_example["depth"] = tf.expand_dims(
+        single_example["depth"], axis=-1)
   return single_example
 
 
